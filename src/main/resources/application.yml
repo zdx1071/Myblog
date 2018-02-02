@@ -1,0 +1,30 @@
+server:
+  port: 8080
+debug: false
+#thymeleaf
+spring:
+  thymeleaf:
+    encoding: UTF-8
+    cache: false
+    mode: HTML5
+  #DataSource
+  datasource:
+    url: jdbc:mysql://localhost/blog?characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  #jpa
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  data:
+    elasticsearch:
+      cluster-nodes: localhost:9300
+      local: false
+      repositories:
+        enabled: true
+      properties:
+        path:
+          data: ./elasticsearch/data #elasticsearch数据存储目录
+
