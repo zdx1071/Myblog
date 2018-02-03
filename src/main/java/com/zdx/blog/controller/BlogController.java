@@ -39,8 +39,7 @@ public class BlogController {
         try{
             if (order.equals("hot")){
                 //把这个排序策略改简单一点
-                Sort sort =new Sort(Direction.DESC,"readSize","commentSize","voteSize",
-                        "createTime");
+                Sort sort = new Sort(Direction.DESC,"readSize","commentSize","voteSize", "createTime");
                 Pageable pageable = new PageRequest(pageIndex,pageSize,sort);
                 page = esBlogService.listHotestEsBlogs(keyword,pageable);
             }else if (order.equals("new")){

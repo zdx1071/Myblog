@@ -165,7 +165,7 @@ public class UserspaceController {
 
         //每次读取，简单的可以认为阅读量增加一次
         //可以修改成检测IP，同一IP一定时间内只能算一次
-        blogService.readingIncrease(id);
+        //blogService.readingIncrease(id);
 
         //判断操作用户是否是博客的所有者
         boolean isBlogOwner = false;

@@ -45,14 +45,20 @@
     <link href="../../css/blog.css" th:href="@{/css/blog.css}" rel="stylesheet">
 </head>
 <body>
-<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">
+
+<!--waitfordel<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">-->
+<!--导航条白色背景-->
+<nav class="navbar navbar-toggleable-sm navbar-light navbar-static-top col-md-12 default">
+
     <div class="container">
+        <!--响应式布局，待修改好看一些-->
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
                 data-target="#navbarsContainer" aria-controls="navbarsExampleContainer" aria-expanded="false"
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="/" th:href="@{/}">NewStarBlog</a>
+        <!--<a class="navbar-brand" href="/" th:href="@{/}">NewStarBlog</a>-->
+        <a class="navbar-brand col-my-4 " href="/" th:href="@{/}">NewStarBlog</a>
 
         <div class="collapse navbar-collapse" id="navbarsContainer">
 
@@ -93,6 +99,7 @@
                 <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
                 <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
             </div>
+
 
         </div>
 

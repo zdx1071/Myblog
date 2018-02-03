@@ -1,16 +1,14 @@
 package com.zdx.blog.domain.es;
 
 import com.zdx.blog.domain.Blog;
-import org.springframework.data.elasticsearch.annotations.Document;
-import org.springframework.data.elasticsearch.annotations.Field;
-import org.springframework.data.elasticsearch.annotations.FieldIndex;
+import org.springframework.data.elasticsearch.annotations.*;
 
 import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-@Document(indexName = "blog",type = "blog", shards = 1, replicas = 0, refreshInterval = "-1")
+@Document(indexName = "blog",type = "blog")
 @XmlRootElement
 public class EsBlog implements Serializable{
 
@@ -19,7 +17,7 @@ public class EsBlog implements Serializable{
     @Id
     private String id;
 
-    @Field(index = FieldIndex.not_analyzed)
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)
     private Long blogId;
 
     private String title;
@@ -28,22 +26,22 @@ public class EsBlog implements Serializable{
 
     private String content;
 
-    @Field(index = FieldIndex.not_analyzed)
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.String)
     private String username;
 
-    @Field(index = FieldIndex.not_analyzed)
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.String)
     private String avatar;
 
-    @Field(index = FieldIndex.not_analyzed)
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.Date,format = DateFormat.basic_date_time_no_millis)
     private Timestamp createTime;
 
-    @Field(index = FieldIndex.not_analyzed)  // 不做全文检索字段
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)  // 不做全文检索字段
     private Integer readSize = 0; // 访问量、阅读量
 
-    @Field(index = FieldIndex.not_analyzed)  // 不做全文检索字段
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)  // 不做全文检索字段
     private Integer commentSize = 0;  // 评论量
 
-    @Field(index = FieldIndex.not_analyzed)  // 不做全文检索字段
+    @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)  // 不做全文检索字段
     private Integer voteSize = 0;  // 点赞量
 
     private String tags;
@@ -57,7 +55,7 @@ public class EsBlog implements Serializable{
     }
 
     public EsBlog(Long blogId, String title, String summary, String content, String username,
-                  String avatar, Timestamp createTime, Integer readSize,
+                  String avatar, Timestamp createTime, /*Integer readSize,*/
                   Integer commentSize, Integer voteSize, String tags) {
         this.blogId = blogId;
         this.title = title;

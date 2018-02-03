@@ -2,8 +2,8 @@ package com.zdx.blog.service.impl;
 
 import com.zdx.blog.domain.User;
 import com.zdx.blog.domain.es.EsBlog;
-import com.zdx.blog.service.UserService;
 import com.zdx.blog.repository.es.EsBlogRepository;
+import com.zdx.blog.service.UserService;
 import com.zdx.blog.service.EsBlogService;
 import com.zdx.blog.vo.TagVO;
 import org.elasticsearch.action.search.SearchResponse;
@@ -80,6 +80,7 @@ public class EsBlogServiceImpl implements EsBlogService{
     @Override
     public Page<EsBlog> listHotestEsBlogs(String keyword, Pageable pageable) throws SearchParseException {
         Sort sort = new Sort(Direction.DESC,"readSize","commentSize","voteSize","createTime");
+        //Sort sort = null;
         if (pageable.getSort() == null){
             pageable = new PageRequest(pageable.getPageNumber(),pageable.getPageSize(),sort);
         }

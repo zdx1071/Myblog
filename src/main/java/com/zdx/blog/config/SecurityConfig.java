@@ -19,7 +19,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
     //这个KEY的作用是？
-    private static final String KEY = "zdx.com";
+    private static final String KEY = "zdx.blog.com";
 
     @Autowired
     private UserDetailsService userDetailsService;
@@ -53,7 +53,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
                                 .and()
                                 .formLogin()    //基于Form表单登陆验证
                                 .loginPage("/login").failureUrl("/login-error") //自定义登陆页面
-                                //.and().rememberMe().key(KEY)    //启用remember me
+                                .and().rememberMe().key(KEY)    //启用remember me
                                 .and().exceptionHandling().accessDeniedPage("/403"); //处理异常，拒绝访问就重定向到403页面
         http.csrf().ignoringAntMatchers("/h2-console/**");  //禁用H2控制台的CSRF防护
         http.headers().frameOptions().sameOrigin(); //允许来自同意来源的H2控制台的请求

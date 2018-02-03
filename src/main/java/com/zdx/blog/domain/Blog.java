@@ -11,7 +11,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
-@Document(indexName = "blog", type = "blog", shards = 1, replicas = 0, refreshInterval = "-1")
+@Document(indexName = "blog", type = "blog")
 public class Blog implements Serializable{
     private static final long serialVersionUID = 1L;
 
