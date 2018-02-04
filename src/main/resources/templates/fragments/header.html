@@ -46,9 +46,8 @@
 </head>
 <body>
 
-<!--waitfordel<nav class="navbar navbar-inverse bg-inverse navbar-toggleable-md">-->
 <!--导航条白色背景-->
-<nav class="navbar navbar-toggleable-sm navbar-light navbar-static-top col-md-12 default">
+<nav class="navbar navbar-light navbar-toggleable-sm navbar-static-top col-md-12 default" style="background-color: #f6f6f6;">
 
     <div class="container">
         <!--响应式布局，待修改好看一些-->
@@ -57,12 +56,12 @@
                 aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--<a class="navbar-brand" href="/" th:href="@{/}">NewStarBlog</a>-->
+
         <a class="navbar-brand col-my-4 " href="/" th:href="@{/}">NewStarBlog</a>
 
         <div class="collapse navbar-collapse" id="navbarsContainer">
 
-            <ul class="navbar-nav mr-auto">
+            <ul class="navbar-nav  mr-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="javascript:void(0)" th:attr="url='/blogs?order=new'" >最新 <span class="sr-only">(current)</span></a>
                 </li>
@@ -76,28 +75,39 @@
                 </form>
 
             </ul>
-            <div sec:authorize="isAuthenticated()"  class="row" >
-				<div class="dropdown">
-					<a class=" dropdown-toggle" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}" data-toggle="dropdown"><span sec:authentication="name"></span></a>
-					<div class="dropdown-menu" >
-						<a class=" dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}">个人主页</a> 
-						<a class="dropdown-item" href="/u/waylau/profile" th:href="@{'/u/' + ${#authentication.name}} + '/profile'" >个人设置</a>
-					</div>
-				</div>
+            <div sec:authorize="isAuthenticated()"  class="row">
+                <div class="btn-group">
+                        <button href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}"
+                                class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                <span sec:authentication="name"></span>
+                        </button>
+				    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item" href="/u/waylau" th:href="@{'/u/' + ${#authentication.name}}"
+                                type="button">个人主页</button>
+                        <button class="dropdown-item" href="/u/waylau/profile"
+                                th:href="@{'/u/' + ${#authentication.name}} + '/profile'" type="button">个人设置</button>
+                    </div>
+                </div>
  				<div>
- 					<a href="/u/waylau/blogs/edit" th:href="'/u/' + ${#authentication.name} + '/blogs/edit'" class="btn btn-outline-success my-2 my-sm-0">写博客</a>
+ 					<a href="/u/waylau/blogs/edit" th:href="'/u/' + ${#authentication.name} + '/blogs/edit'">
+                        <button class="btn btn-secondary">
+                            写博客
+                        </button>
+                    </a>
  				</div>
                 
 				<form action="/logout" th:action="@{/logout}" method="post">
-					<input class="btn btn-outline-success " type="submit" value="退出">
+					<input class="btn btn-secondary" type="submit" value="退出">
 				</form>
             </div>
  
                 
 
-            <div sec:authorize="isAnonymous()">
-                <a href="/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">登录</a>
-                <a href="/register" class="btn btn-outline-success my-2 my-sm-0" type="submit">注册</a>
+            <a sec:authorize="isAnonymous()">
+                <a href="/login"><button  type="submit" class="btn btn-secondary">登录</button></a>
+
+                <a href="/register"><button  type="submit" class="btn btn-secondary">注册</button></a>
             </div>
 
 
