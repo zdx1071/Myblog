@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+//indexName = 索引库名称,type = 类型
 @Document(indexName = "blog",type = "blog")
 @XmlRootElement
 public class EsBlog implements Serializable{
@@ -32,7 +33,7 @@ public class EsBlog implements Serializable{
     @Field(index = FieldIndex.not_analyzed,type = FieldType.String)
     private String avatar;
 
-    @Field(index = FieldIndex.not_analyzed,type = FieldType.Date,format = DateFormat.basic_date_time_no_millis)
+    @Field(index = FieldIndex.analyzed,type = FieldType.Date,format = DateFormat.basic_date_time_no_millis)
     private Timestamp createTime;
 
     @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)  // 不做全文检索字段
@@ -44,6 +45,7 @@ public class EsBlog implements Serializable{
     @Field(index = FieldIndex.not_analyzed,type = FieldType.Integer)  // 不做全文检索字段
     private Integer voteSize = 0;  // 点赞量
 
+    @Field
     private String tags;
 
     protected EsBlog() {
@@ -55,7 +57,7 @@ public class EsBlog implements Serializable{
     }
 
     public EsBlog(Long blogId, String title, String summary, String content, String username,
-                  String avatar, Timestamp createTime, /*Integer readSize,*/
+                  String avatar, Timestamp createTime, Integer readSize,
                   Integer commentSize, Integer voteSize, String tags) {
         this.blogId = blogId;
         this.title = title;
